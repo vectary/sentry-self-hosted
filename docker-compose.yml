@@ -145,6 +145,8 @@ services:
         "max_replication_slots=1",
         "-c",
         "max_wal_senders=1",
+        "-c",
+        "max_connections=1000",
       ]
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
@@ -403,6 +405,7 @@ services:
     <<: *restart_policy
     ports:
       - "$SENTRY_BIND:80/tcp"
+      - "443:443/tcp"
     image: "nginx:1.25.2-alpine"
     volumes:
       - type: bind
